@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<launch>
+
+	<arg name="launch_rviz" default="true" />
+	<arg name="cloud_topic" default="/rslidar_points" />
+	<arg name="play_delay" default="0.4" />
+	<arg name="play_rate" default="1.0" />
+	<arg name="use_sim_time" default="true" />
+
+	<arg name="parameter_file_path" default="$(find open3d_slam)/param/params_velodyne_puck16.yaml"/>
+	<arg name="bag_filename" default="" /> 
+	<arg name="bag_filepath" 
+		default="$(find open3d_slam)/data/$(arg bag_filename)" /> 
+
+	<include file="$(find open3d_slam)/launch/mapping.launch">
+		<arg name="cloud_topic" value="$(arg cloud_topic)"/>
+		<arg name="launch_rviz" value="$(arg launch_rviz)"/>
+		<arg name="parameter_file_path" value="$(arg parameter_file_path)"/>
+		<arg name="num_accumulated_range_data" value="32"/>
+		<arg name="use_sim_time" value="$(arg use_sim_time)"/>
+		<!-- <arg name="is_read_from_rosbag" value="true"/>
+		<arg name="rosbag_filepath" value="$(arg bag_filepath)"/> -->
+	</include>
+
+	<!-- Could also try to set the params is_read_from_rosbag and rosbag_filepath when including the mapping.launch file, instead of manually playing the bag -->
+	<node pkg="rosbag" type="play" name="rosbag"
+		args="'$(arg bag_filepath)' --delay '$(arg play_delay)' --rate '$(arg play_rate)' --clock -s 0" />
+	<!-- append - -loop for looping -->
+
+
+</launch>
