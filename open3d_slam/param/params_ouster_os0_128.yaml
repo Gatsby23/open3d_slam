@@ -13,7 +13,7 @@ odometry:
       min_z: -35.0
       max_z: 35.0
       cropper_type: "MaxRadius" #options are Cylinder, MaxRadius, MinRadius, MinMaxRadiusv
-  
+
 mapping:
   is_print_timing_information: true
   is_build_dense_map: true
@@ -43,7 +43,7 @@ mapping:
     size: 30
     min_num_range_data: 10
     adjacency_based_revisiting_min_fitness: 0.4
-    
+
   map_builder:
     scan_cropping:
       cropping_radius_max: 40.0
@@ -59,7 +59,7 @@ mapping:
       truncation_distance: 0.4
       carve_space_every_n_sec: 2.0
       min_dot_product_with_normal: 0.3
-      
+
   dense_map_builder:
     scan_cropping:
       cropping_radius_max: 12.0
@@ -91,11 +91,11 @@ mapping:
     ransac_min_corresondence_set_size: 25
     max_icp_correspondence_distance: 0.3
     min_icp_refinement_fitness: 0.5
-    dump_aligned_place_recognitions_to_file: false   
+    dump_aligned_place_recognitions_to_file: false
     consistancy_check:
-      max_drift_roll: 70.0 #deg
+      max_drift_roll: 70.0 # deg
       max_drift_pitch: 70.0 # deg
-      max_drift_yaw: 70.0 #deg
+      max_drift_yaw: 70.0 # deg
 
 
   global_optimization:
@@ -103,7 +103,7 @@ mapping:
     loop_closure_preference: 2.0
     max_correspondence_distance: 10.0
     reference_node: 0
-    
+
 local_map:
   voxel_size: 0.08
   cropping_radius: 10.0
@@ -123,13 +123,13 @@ mesher:
   poisson_depth: 8
   poisson_min_density: -2.0
   poisson_scale: 0.8
-  ball_pivot_radii: [0.5] 
+  ball_pivot_radii: [0.5]
 
 visualization:
   assembled_map_voxel_size: 0.1
   submaps_voxel_size: 0.1
   visualize_every_n_msec: 300.0
-  
-  
 
-    
+
+
+

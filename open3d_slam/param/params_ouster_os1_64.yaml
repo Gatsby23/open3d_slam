@@ -12,9 +12,8 @@ odometry:
       cropping_radius_min: 0.0
       min_z: -3.0
       max_z: 2.0
-      cropper_type: "Cylinder" #otions are Cylinder, MaxRadius, MinRadius, MinMaxRadius
-    
-  
+      cropper_type: "Cylinder" #options are Cylinder, MaxRadius, MinRadius, MinMaxRadius
+
 mapping:
   is_print_timing_information: true
   is_build_dense_map: false
@@ -38,21 +37,20 @@ mapping:
         cropping_radius_min: 0.0
         min_z: -3.0
         max_z: 1.0
-        cropper_type: "Cylinder" #otions are Cylinder, MaxRadius, MinRadius, MinMaxRadius
-      
+        cropper_type: "Cylinder" #options are Cylinder, MaxRadius, MinRadius, MinMaxRadius
 
   submaps:
     size: 10
     min_num_range_data: 10
     adjacency_based_revisiting_min_fitness: 0.4
-    
+
   map_builder:
     scan_cropping:
       cropping_radius_max: 20.0
       cropping_radius_min: 0.0
       min_z: -3.0
       max_z: 3.0
-      cropper_type: "Cylinder" #otions are Cylinder, MaxRadius, MinRadius, MinMaxRadius
+      cropper_type: "Cylinder" #options are Cylinder, MaxRadius, MinRadius, MinMaxRadius
     map_voxel_size: 0.1
     voxelize_every_n_scans: 5
     space_carving:
@@ -61,14 +59,14 @@ mapping:
       truncation_distance: 0.1
       carve_space_every_n_sec: 2000000.0
       min_dot_product_with_normal: 0.3
-      
+
   dense_map_builder:
     scan_cropping:
       cropping_radius_max: 12.0
       cropping_radius_min: 0.0
       min_z: -3.0
       max_z: 3.0
-      cropper_type: "Cylinder" #otions are Cylinder, MaxRadius, MinRadius, MinMaxRadius
+      cropper_type: "Cylinder" #options are Cylinder, MaxRadius, MinRadius, MinMaxRadius
     map_voxel_size: 0.08
     voxelize_every_n_scans: 5
     space_carving:
@@ -93,20 +91,18 @@ mapping:
     ransac_min_corresondence_set_size: 25
     max_icp_correspondence_distance: 0.3
     min_icp_refinement_fitness: 0.7
-    dump_aligned_place_recognitions_to_file: false   
+    dump_aligned_place_recognitions_to_file: false
     consistancy_check:
-      max_drift_roll: 70.0 #deg
+      max_drift_roll: 70.0 # deg
       max_drift_pitch: 70.0 # deg
-      max_drift_yaw: 70.0 #deg
-
-
+      max_drift_yaw: 70.0 # deg
 
   global_optimization:
     edge_prune_threshold: 0.2
     loop_closure_preference: 2.0
     max_correspondence_distance: 10.0
     reference_node: 0
-    
+
 local_map:
   voxel_size: 0.08
   cropping_radius: 10.0
@@ -120,13 +116,9 @@ mesher:
   poisson_depth: 8
   poisson_min_density: -2.0
   poisson_scale: 0.8
-  ball_pivot_radii: [0.5] 
-
+  ball_pivot_radii: [0.5]
 
 visualization:
   assembled_map_voxel_size: 0.1
-  submaps_voxel_size: 0.1  
+  submaps_voxel_size: 0.1
   visualize_every_n_msec: 300.0
-  
-  
-    
