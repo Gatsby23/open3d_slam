@@ -7,7 +7,7 @@
 	<arg name="play_delay" default="0.4" />
 	<arg name="play_rate" default="0.5" />
 	<arg name="use_sim_time" default="true" />
-	<arg name="is_read_from_rosbag" default="false" />
+	<arg name="is_read_from_rosbag" default="true" />
 	<arg name="use_rgb_from_camera" default="false" />
 
 	<arg name="parameter_file_path"
