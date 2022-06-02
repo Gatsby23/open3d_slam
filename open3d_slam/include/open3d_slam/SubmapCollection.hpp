@@ -75,7 +75,7 @@ private:
 	bool isSwitchingSubmapsConsistant(const PointCloud &scan, size_t newActiveSubmapCandidate, const Transform &mapToRangeSensor) const;
 	void insertBufferedScans(Submap *submap);
 	void addScanToBuffer(const PointCloud &scan, const Transform &mapToRangeSensor, const Time &timestamp);
-	void updateActiveSubmap(const Transform &mapToRangeSensor, const PointCloud &scan);
+	void updateActiveSubmap(const Transform &mapToRangeSensor, const PointCloud &scan); // might cause some problems
 	void createNewSubmap(const Transform &mapToSubmap);
 	size_t findClosestSubmap(const Transform &mapToRangesensor) const;
 	std::vector<size_t> getAllSubmapIdxs() const;

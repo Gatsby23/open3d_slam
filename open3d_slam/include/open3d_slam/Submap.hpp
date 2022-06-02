@@ -43,7 +43,7 @@ public:
 			bool isPerformCarving);
 
 	const Transform& getMapToSubmapOrigin() const;
-	Eigen::Vector3d getMapToSubmapCenter() const;
+	Eigen::Vector3d getMapToSubmapCenter() const; // maybe you might to compute it.
 	void setMapToSubmapOrigin(const Transform &T);
 	const PointCloud& getMapPointCloud() const;
 	PointCloud getMapPointCloudCopy() const;
@@ -73,7 +73,7 @@ private:
 	void voxelizeInsideCroppingVolume(const CroppingVolume &cropper, const MapBuilderParameters &param,
 			PointCloud *map) const;
 
-	PointCloud sparseMapCloud_, mapCloud_;
+	PointCloud sparseMapCloud_, mapCloud_;   // mapCloud_ is a pointcloud accumulating scans
 	Transform mapToSubmap_ = Transform::Identity();
 	Transform mapToRangeSensor_ = Transform::Identity();
 	Eigen::Vector3d submapCenter_ = Eigen::Vector3d::Zero();

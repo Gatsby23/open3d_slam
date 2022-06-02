@@ -15,7 +15,7 @@
 #include "open3d_slam_ros/DataProcessorRos.hpp"
 
 namespace o3d_slam {
-
+ // make a new ProcessorRos for initialization so that initialize with all the ros functionality
 class OnlineRangeDataProcessorRos : public DataProcessorRos  {
 
 	using BASE = DataProcessorRos;

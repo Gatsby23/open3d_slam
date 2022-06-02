@@ -28,7 +28,7 @@ public:
 			std::shared_ptr<SubmapCollection> submaps);
 	~Mapper() = default;
 
-	void setMapToRangeSensor(const Transform &t);
+	void setMapToRangeSensor(const Transform &t); // set initial position here
 	const Submap& getActiveSubmap() const;
 	const SubmapCollection& getSubmaps() const;
 	SubmapCollection* getSubmapsPtr();
