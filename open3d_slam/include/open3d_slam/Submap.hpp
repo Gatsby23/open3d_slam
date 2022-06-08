@@ -40,7 +40,9 @@ public:
 	bool insertScan(const PointCloud &rawScan, const PointCloud &preProcessedScan, const Transform &transform,
 			const Time &time, bool isPerformCarving);
 	bool insertScanDenseMap(const PointCloud &rawScan, const Transform &transform, const Time &time,
-			bool isPerformCarving);
+													bool isPerformCarving);
+	
+	void loadMap(PointCloud& mapPointcloud);
 
 	const Transform& getMapToSubmapOrigin() const;
 	Eigen::Vector3d getMapToSubmapCenter() const; // maybe you might to compute it.
@@ -58,6 +60,7 @@ public:
 	size_t getParentId() const;
 	void transform(const Transform &T);
 	const VoxelMap& getVoxelMap() const;
+	
 	mutable PointCloud toRemove_;
 	mutable PointCloud scanRef_;
 

@@ -8,6 +8,7 @@
 #include "open3d_slam/SlamWrapper.hpp"
 
 #include <chrono>
+#include <thread>
 #include <open3d/Open3D.h>
 #include "open3d_slam/Parameters.hpp"
 #include "open3d_slam/frames.hpp"
@@ -179,7 +180,11 @@ void SlamWrapper::loadParametersAndInitialize() {
 
 	submaps_ = std::make_shared<o3d_slam::SubmapCollection>();
 	submaps_->setFolderPath(folderPath_);
+
 	mapper_ = std::make_shared<o3d_slam::Mapper>(odometry_->getBuffer(), submaps_);
+	// auto wideCroppedCloud = mapper_->preProcessScan(rawMap);
+	// const Time timestamp = Time::fromRos(ros::Time::now());
+
 	o3d_slam::loadParameters(paramFile, &mapperParams_);
 	mapper_->setParameters(mapperParams_);
 
@@ -193,6 +198,35 @@ void SlamWrapper::loadParametersAndInitialize() {
 
 	loadParameters(paramFile,&savingParameters_);
 
+	PointCloud rawMap;
+	std::string file_path = "/rosp_ws/src/open3d_slam/open3d_slam_ros/data/paris.pcd";
+	bool result;
+	result = open3d::io::ReadPointCloud(file_path, rawMap);
+
+	std::cout << (result ? "Loading successfull" : "Loading unsuccessfull") << std::endl;
+
+	const Time timestamp = fromUniversal(0);
+	using namespace std::chrono_literals;
+	std::cout << "Loading..." << std::endl;
+
+	TimestampedPointCloud measurement;
+	measurement.cloud_ = rawMap;
+	measurement.time_ = timestamp;
+	const size_t activeSubmapIdx = mapper_->getActiveSubmap().getId();
+	const bool mappingResult = mapper_->addRangeMeasurement(measurement.cloud_, measurement.time_);
+	
+	if (mappingResult) {
+		RegisteredPointCloud registeredCloud;
+		registeredCloud.submapId_ = activeSubmapIdx;
+		registeredCloud.raw_ = measurement;
+		registeredCloud.transform_ = mapper_->getMapToRangeSensor(measurement.time_);
+		registeredCloud.sourceFrame_ = frames::rangeSensorFrame;
+		registeredCloud.targetFrame_ = frames::mapFrame;
+		registeredCloudBuffer_.push(registeredCloud);
+		latestScanToMapRefinementTimestamp_ = measurement.time_;
+	}
+	// std::this_thread::sleep_for(5s);
+	// std::cout << "Done" << std::endl;
 }
 
 void SlamWrapper::startWorkers() {

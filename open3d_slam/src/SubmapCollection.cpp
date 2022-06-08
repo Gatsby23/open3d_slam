@@ -31,6 +31,13 @@ SubmapCollection::SubmapCollection() {
 	overlapScansBuffer_.set_size_limit(5);
 }
 
+SubmapCollection::SubmapCollection(PointCloud mapPointcloud) {
+	submaps_.reserve(100);
+	createNewSubmap(mapToRangeSensor_);
+	submaps_[0].loadMap(mapPointcloud);
+	overlapScansBuffer_.set_size_limit(5);
+}
+
 void SubmapCollection::setMapToRangeSensor(const Transform &T) {
 	mapToRangeSensor_ = T;
 }

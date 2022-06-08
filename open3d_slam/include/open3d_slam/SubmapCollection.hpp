@@ -37,6 +37,7 @@ public:
 	using TimestampedSubmapIds = std::vector<TimestampedSubmapId>;
 	EIGEN_MAKE_ALIGNED_OPERATOR_NEW;
 	SubmapCollection();
+	SubmapCollection(PointCloud mapPointcloud);
 	~SubmapCollection() = default;
 
 	void setMapToRangeSensor(const Transform &T);

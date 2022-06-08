@@ -37,6 +37,13 @@ size_t Submap::getParentId() const {
 	return parentId_;
 }
 
+void Submap::loadMap(PointCloud& mapPointcloud)
+{
+	mapCloud_ = mapPointcloud;
+	estimateNormalsIfNeeded(params_.scanMatcher_.kNNnormalEstimation_, &mapCloud_);
+	std::cout << "Map loaded and contains " << mapCloud_.points_.size() << " points." << std::endl;
+}
+
 bool Submap::insertScan(const PointCloud &rawScan, const PointCloud &preProcessedScan,
 		const Transform &mapToRangeSensor, const Time &time, bool isPerformCarving) {
 
