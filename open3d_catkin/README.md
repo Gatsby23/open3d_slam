@@ -49,7 +49,7 @@ Compilation of _open3d_catkin_ is then really straightforward:
 catkin build open3d_catkin
 ```
 The 3 compilation options are chosen automatically in the following order:
-1. open3d is installed locally and the _$Open3D_DIR_ environment variable is pointing to the installation location. The success of this is indicated through the message _INFO: Found manually set path to Open3D. Using version located at <location>._.
+1. open3d is installed locally and the $*Open3D_DIR* environment variable is pointing to the installation location. The success of this is indicated through the message *INFO: Found manually set path to Open3D. Using version located at (some user define location)*.
 _
 2. open3d is installed globally.
 Both of these options should compile within a few seconds.
